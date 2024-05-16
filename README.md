@@ -1,24 +1,69 @@
-# README
+# テーブル設定
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column						 | Type	  | Options			|
+|	-----------------	 | ------ | ----------- |
+|	nickname					 | string | null: false |
+|	email							 | string | null: false, unique: true |
+|	encrypted_password | string | null: false |
+|	last_name					 | string | null: false |
+|	first_name				 | string | null: false |
+|	birthday					 | date	  | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :comments
+- has_one :address
 
-* Configuration
+## itemsテーブル
 
-* Database creation
+| Column		| Type			 | Options		 |
+|	--------- | ---------- | ----------- |
+| image			| binary		 | null: false |
+| name			| string		 | null: false |
+| caption   | string		 | null: false |
+| condition | string		 | null: false |
+| postage		| string		 | null: false |
+| region		| string	   | null: false |
+| ship_date | string  	 | null: false |
+| price			| integer 	 | null: false |
+| user		  | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_many :comments
+- has_one :address
 
-* Services (job queues, cache servers, search engines, etc.)
+## commentsテーブル
 
-* Deployment instructions
+| Column | Type		    | Options		 										 |
+|	------ | ---------- | ------------------------------ |
+| text   | text		    | null: false										 |
+| item   | references | null: false, foreign_key: true |
+| user	 | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+## addressesテーブル
+
+| Column		 | Type			  | Options	    |
+|	---------- | ---------- | ----------- |
+| post_code	 | integer		| null: false |
+| prefecture | string		  | null: false |
+| city   		 | string		  | null: false |
+| block 		 | string		  | null: false |
+| building	 | string	    | null: false |
+| phone			 | integer	  | null: false |
+| user		   | references | null: false, foreign_key: true |
+| item		   | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
