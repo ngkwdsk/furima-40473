@@ -17,7 +17,7 @@
 
 - has_many :items
 - has_many :comments
-- has_many :purchase
+- has_many :purchases
 
 ## itemsテーブル
 
@@ -37,7 +37,6 @@
 
 - belongs_to :user
 - has_many :comments
-- has_one :item
 - has_one :purchase
 
 ## commentsテーブル
@@ -61,13 +60,13 @@
 | region_id  | integer	  | null: false |
 | city   		 | string		  | null: false |
 | block 		 | string		  | null: false |
-| building	 | string	    | null: false |
+| building	 | string	    | 
 | phone			 | string 	  | null: false |
-| item  		 | references | null: false, foreign_key: true |
+| purchase   | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :item
+- belongs_to :purchase
 
 ## purchasesテーブル
 
@@ -80,3 +79,4 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one :address
