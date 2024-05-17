@@ -17,13 +17,14 @@
 
 - has_many :items
 - has_many :comments
+- has_one :purchase
 
 ## itemsテーブル
 
 | Column	  	 | Type			  | Options	 	  |
 |	------------ | ---------- | ----------- |
 | name				 | string		  | null: false |
-| caption   	 | string		  | null: false |
+| caption   	 | text	  	  | null: false |
 | category_id	 | integer		| null: false |
 | condition_id | integer		| null: false |
 | postage_id	 | integer		| null: false |
@@ -36,12 +37,13 @@
 
 - belongs_to :user
 - has_many :comments
+- has_one :purchase
 
 ## commentsテーブル
 
-| Column | Type		    | Options		 										 |
-|	------ | ---------- | ------------------------------ |
-| text   | text		    | null: false										 |
+| Column | Type		    | Options		 	 |
+|	------ | ---------- | ------------ |
+| text   | text		    | null: false	 |
 | item   | references | null: false, foreign_key: true |
 | user	 | references | null: false, foreign_key: true |
 
@@ -54,24 +56,27 @@
 
 | Column		 | Type			  | Options	    |
 |	---------- | ---------- | ----------- |
-| post_code	 | integer		| null: false |
-| prefecture | string		  | null: false |
+| post_code	 | string 		| null: false |
+| region_id  | integer	  | null: false |
 | city   		 | string		  | null: false |
 | block 		 | string		  | null: false |
 | building	 | string	    | null: false |
-| phone			 | integer	  | null: false |
+| phone			 | string 	  | null: false |
 
 ### Association
 
-- has_one :purchase
+- belongs_to :purchase
 
 ## purchasesテーブル
 
+| Column		 | Type			  | Options	    |
+|	---------- | ---------- | ----------- |
 | user		   | references | null: false, foreign_key: true |
 | item		   | references | null: false, foreign_key: true |
+| address	   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :addresses
+- has_one :address
