@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      render json: {item: item}
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
