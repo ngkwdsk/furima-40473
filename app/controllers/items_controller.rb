@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(parames[:id])
+    @item = Item.find(params[:id])
     unless @item.user == current_user
       redirect_to item_path
     end
