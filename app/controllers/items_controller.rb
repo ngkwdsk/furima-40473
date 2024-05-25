@@ -24,16 +24,17 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    redirect_to new_user_session_path unless user_signed_in?
     @item = Item.find(params[:id])
     unless @item.user == current_user
-      redirect_to item_path
+      redirect_to root_path
     end
   end
 
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to item_path(@item)
     else
       render :edit, status: :unprocessable_entity
     end
