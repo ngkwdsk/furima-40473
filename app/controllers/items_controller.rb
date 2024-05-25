@@ -5,6 +5,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @previous_item = Item.where("id < ?", @item.id).last
+    @next_item = Item.where("id > ?", @item.id).first
   end
 
   def new
