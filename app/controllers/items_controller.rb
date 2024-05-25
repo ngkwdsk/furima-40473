@@ -3,6 +3,12 @@ class ItemsController < ApplicationController
     @items = Item.all.order(created_at: :desc)
   end
 
+  def show
+    @item = Item.find(params[:id])
+    @previous_item = Item.where("id < ?", @item.id).last
+    @next_item = Item.where("id > ?", @item.id).first
+  end
+
   def new
     redirect_to new_user_session_path unless user_signed_in?
     @item = Item.new
