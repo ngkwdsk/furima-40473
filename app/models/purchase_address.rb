@@ -7,7 +7,7 @@ class PurchaseAddress
     validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'must be full-width characters' }
     validates :block
-    validates :phone, format: {with: /\A0\d{9,10}\z/, message: 'is invalid. Enter it as follows (e.g. 012345678)' }
+    validates :phone, format: {with: /\A0\d{9,10}\z/, message: 'is invalid. Enter it as follows (e.g. 09012345678)' }
     validates :token
   end
 
