@@ -5,10 +5,12 @@ class PurchaseAddress
   with_options presence: true do
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' }
     validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
-    validates :city, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'must be full-width characters' }
+    validates :city
     validates :block
     validates :phone, format: {with: /\A0\d{9,10}\z/, message: 'is invalid. Enter it as follows (e.g. 09012345678)' }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
