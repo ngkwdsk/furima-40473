@@ -20,7 +20,7 @@
           クリックしてファイルをアップロード
         </p>
         <div id="previews"></div>
-        <%= f.file_field :image, id:"item-image" %>
+        <%= f.file_field :images, multiple: true, name: "item[images][]", id: "item-image" %>
       </div>
     </div>
     <%# /商品画像 %>
